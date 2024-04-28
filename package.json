@@ -4,7 +4,7 @@
     "test_coverage": "jest --force-exit --runInBand --coverage",
     "db_test_drop": "sequelize db:drop --env test",
     "db_test_init": "sequelize db:create --env test && sequelize db:migrate --env test",
-    "start": "nodemon ./bin/www",
+    "start": "node ./bin/www",
     "dev": "nodemon ./bin/www"
   },
   "dependencies": {
