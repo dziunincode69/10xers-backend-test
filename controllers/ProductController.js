@@ -2,12 +2,9 @@ const { up } = require("../migrations/20240428105152-create-user");
 const { Product } = require("../models");
 
 class ProductController {
-  static async GetAllProductById(req, res, next) {
+  static async GetAllProduct(req, res, next) {
     try {
-      const { id } = req.user;
-      const findProdById = await Product.findAll({
-        user_id: id,
-      });
+      const findProdById = await Product.findAll();
       return res.status(200).json(findProdById);
     } catch (error) {
       next(error);
@@ -43,6 +40,13 @@ class ProductController {
   }
   static async DeleteProduct(req, res, next) {
     try {
+      const role = req.user.role;
+      if (role != "Admin") {
+        throw {
+          name: "Forbidden",
+          message: "Cannot Perform This Action",
+        };
+      }
       const { product_id } = req.params;
       if (!product_id) {
         throw {
@@ -57,12 +61,12 @@ class ProductController {
           message: "Product Not Found",
         };
       }
-      if (findproduct.user_id != req.user.id) {
-        throw {
-          name: "Forbidden",
-          message: "Cannot Perform This Action",
-        };
-      }
+      // if (findproduct.user_id != req.user.id) {
+      //   throw {
+      //     name: "Forbidden",
+      //     message: "Cannot Perform This Action",
+      //   };
+      // }
       await findproduct.destroy();
       res.status(200).json({
         message: "Success Delete Product " + findproduct.name,
@@ -73,6 +77,14 @@ class ProductController {
   }
   static async EditProduct(req, res, next) {
     try {
+      const role = req.user.role;
+      console.log(role, "whoami");
+      if (role != "Admin") {
+        throw {
+          name: "Forbidden",
+          message: "Cannot Perform This Action",
+        };
+      }
       const { product_id } = req.params;
       if (!product_id) {
         throw {
@@ -106,12 +118,12 @@ class ProductController {
           message: "Price cannot blank",
         };
       }
-      if (findproduct.user_id != req.user.id) {
-        throw {
-          name: "Forbidden",
-          message: "Cannot Perform This Action",
-        };
-      }
+      // if (findproduct.user_id != req.user.id) {
+      //   throw {
+      //     name: "Forbidden",
+      //     message: "Cannot Perform This Action",
+      //   };
+      // }
       const updateproduct = await findproduct.update(req.body);
       res.status(200).json(updateproduct);
     } catch (error) {

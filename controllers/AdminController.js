@@ -1,23 +1,10 @@
-const { Admin, User } = require("../models");
+const { Admin } = require("../models");
 const { generateJWT, compareBcrypt, validateJWT } = require("../helper/jwt");
 
-class UserController {
+class AdminController {
   static async register(req, res, next) {
     try {
       const { email, password } = req.body;
-      console.log(email);
-      const admincheck = await Admin.findOne({
-        where: {
-          email,
-        },
-      });
-      console.log(admincheck);
-      if (admincheck) {
-        throw {
-          name: "Email Exist",
-          message: "Please Use Another Email",
-        };
-      }
       if (!email) {
         throw {
           name: "MissingInput",
@@ -31,11 +18,11 @@ class UserController {
         };
       }
       const { body } = req;
-      const createuser = await User.create(body);
+      const createuser = await Admin.create(body);
       const payload = {
         id: createuser.id,
         email,
-        role: "User",
+        role: "Admin",
       };
       const acess_token = generateJWT(payload);
       payload.access_token = acess_token;
@@ -60,11 +47,12 @@ class UserController {
         };
       }
       console.log(req.body);
-      const findEmail = await User.findOne({
+      const findEmail = await Admin.findOne({
         where: {
           email,
         },
       });
+      console.log(findEmail);
       if (!findEmail) {
         throw {
           name: "WrongLogin",
@@ -81,7 +69,7 @@ class UserController {
       const jwtpayload = {
         id: findEmail.id,
         email,
-        role: "User",
+        role: "Admin",
       };
       const acess_token = generateJWT(jwtpayload);
       jwtpayload.access_token = acess_token;
@@ -92,4 +80,4 @@ class UserController {
   }
 }
 
-module.exports = UserController;
+module.exports = AdminController;

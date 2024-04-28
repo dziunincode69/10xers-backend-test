@@ -11,6 +11,11 @@ const errorHandler = (err, req, res, next) => {
         message: err.message.replace("Validation error: ", ""),
       });
     }
+    case "Email Exist": {
+      return res.status(400).json({
+        message: err.message,
+      });
+    }
     case "Forbidden": {
       return res.status(403).json({
         message: err.message,
