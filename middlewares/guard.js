@@ -2,8 +2,8 @@ const { validateJWT } = require("../helper/jwt");
 
 const Authentication = (req, res, next) => {
   try {
-    const { accss_token } = req.headers;
-    const checkValid = validateJWT(accss_token);
+    const { access_token } = req.headers;
+    const checkValid = validateJWT(access_token);
     req.user = checkValid;
     next();
   } catch (error) {
