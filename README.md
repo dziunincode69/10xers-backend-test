@@ -31,7 +31,12 @@ Before you start, ensure you have the following software installed:
    ```
 3. **Run**
    ```
-   node index
+   npm run start
+   ```
+   **Testing**
+   ```
+   npm run db_test_init &&
+   npm run test
    ```
 
 
