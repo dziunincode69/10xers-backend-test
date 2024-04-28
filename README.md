@@ -19,7 +19,7 @@ Before you start, ensure you have the following software installed:
 1. **Clone the repository**
    Clone the project to your local machine using:
    ```bash
-   git clone https://github.com/your-username/10xers-backend-test.git
+   git clone https://github.com/dziunincode69/10xers-backend-test.git
    cd 10xers-backend-test
    ```
 2. **Set Up**
