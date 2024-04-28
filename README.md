@@ -42,3 +42,7 @@ Before you start, ensure you have the following software installed:
 
 ### API DOC
 https://662eb8ce6a97621a32b37cea--gregarious-wisp-5cb374.netlify.app/
+
+**Result Testing**
+<img width="978" alt="image" src="https://github.com/dziunincode69/10xers-backend-test/assets/55616294/ecc48a20-94c1-4460-b96e-2780efce1cbc">
+
