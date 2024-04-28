@@ -4,8 +4,8 @@ require("dotenv").config();
 const app = express();
 const routes = require("./routes");
 const errorHandler = require("./middlewares/errorHandler");
-
 const port = process.env.PORT;
+
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

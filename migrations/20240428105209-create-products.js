@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       img_url: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(2048),
       },
       description: {
         type: Sequelize.STRING,
