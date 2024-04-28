@@ -1,6 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 const product = require("./product");
+const { hashBcrypt } = require("../helper/jwt");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -9,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.hasMany(models.product);
+      User.hasMany(models.Product);
       // define association here
     }
   }
@@ -51,6 +52,12 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "User",
+      hooks: {
+        beforeCreate(arg) {
+          arg.email = arg.email.toLowerCase();
+          arg.password = hashBcrypt(arg.password);
+        },
+      },
     }
   );
   return User;

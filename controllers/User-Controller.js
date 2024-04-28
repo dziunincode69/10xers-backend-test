@@ -24,10 +24,8 @@ class UserController {
         email,
       };
       const acess_token = generateJWT(payload);
-      payload.Access_Token = acess_token;
-      res.status(201).json({
-        payload,
-      });
+      payload.access_token = acess_token;
+      res.status(201).json(payload);
     } catch (error) {
       next(error);
     }
@@ -47,7 +45,8 @@ class UserController {
           message: "Password cannot blank",
         };
       }
-      const findEmail = User.findOne({
+      console.log(req.body);
+      const findEmail = await User.findOne({
         where: {
           email,
         },
@@ -70,10 +69,8 @@ class UserController {
         email,
       };
       const acess_token = generateJWT(jwtpayload);
-      payload.Access_Token = acess_token;
-      return res.status(200).json({
-        payload,
-      });
+      jwtpayload.access_token = acess_token;
+      return res.status(200).json(jwtpayload);
     } catch (error) {
       next(error);
     }
