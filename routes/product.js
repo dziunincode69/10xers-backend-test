@@ -5,7 +5,11 @@ const router = express.Router();
 
 router.get("/show", ProductController.GetAllProduct);
 router.post("/add", ProductController.CreateProduct);
+
+router.delete("/delete/", ProductController.DeleteProduct);
 router.delete("/delete/:product_id", ProductController.DeleteProduct);
+
+router.put("/edit/", ProductController.EditProduct);
 router.put("/edit/:product_id", ProductController.EditProduct);
 
 module.exports = router;

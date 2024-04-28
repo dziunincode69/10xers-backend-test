@@ -5,7 +5,12 @@ class UserController {
   static async register(req, res, next) {
     try {
       const { email, password } = req.body;
-      console.log(email);
+      if (!email) {
+        throw {
+          name: "MissingInput",
+          message: "Email cannot blank",
+        };
+      }
       const admincheck = await Admin.findOne({
         where: {
           email,
@@ -16,12 +21,6 @@ class UserController {
         throw {
           name: "Email Exist",
           message: "Please Use Another Email",
-        };
-      }
-      if (!email) {
-        throw {
-          name: "MissingInput",
-          message: "Email cannot blank",
         };
       }
       if (!password) {
