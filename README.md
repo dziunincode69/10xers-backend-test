@@ -36,4 +36,4 @@ Before you start, ensure you have the following software installed:
 
 
 ### API DOC
-https://662eb719bbc2d217bb98c072--heroic-melba-6e4e1a.netlify.app/
+https://662eb8ce6a97621a32b37cea--gregarious-wisp-5cb374.netlify.app/
